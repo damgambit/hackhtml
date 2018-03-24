@@ -45,58 +45,77 @@ categories = [
     zaini,
 
 ]
-products = []
+
+categories = []
 
 i = 0
 
 for item in camicie:
+    products = []
     products.append({
         'id': i,
         'image': item
     })
     i += 1
+    categories.append(products)
+
+
 for item in maglioni_mad:
+    products = []
     products.append({
         'id': i,
         'image': item
     })
     i += 1
+    categories.append(products)
 for item in patches:
+    products = []
     products.append({
         'id': i,
         'image': item
     })
     i += 1
+    categories.append(products)
 for item in pantaloni:
+    products = []
     products.append({
         'id': i,
         'image': item
     })
     i += 1
+    categories.append(products)
 for item in scarpe_adidas:
+    products = []
     products.append({
         'id': i,
         'image': item
     })
     i += 1
+    categories.append(products)
 for item in skateboard:
+    products = []
     products.append({
         'id': i,
         'image': item
     })
     i += 1
+    categories.append(products)
 for item in tshirt_heart:
+    products = []
     products.append({
         'id': i,
         'image': item
     })
     i += 1
+    categories.append(products)
 for item in zaini:
+    products = []
     products.append({
         'id': i,
         'image': item
     })
     i += 1
+    categories.append(products)
 
 
 
