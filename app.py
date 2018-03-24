@@ -57,7 +57,7 @@ for item in camicie:
         'image': item
     })
     i += 1
-    categories.append(products)
+categories.append(products)
 
 products = []
 for item in maglioni_mad:
@@ -66,7 +66,7 @@ for item in maglioni_mad:
         'image': item
     })
     i += 1
-    categories.append(products)
+categories.append(products)
 
 products = []
 for item in patches:
@@ -75,7 +75,7 @@ for item in patches:
         'image': item
     })
     i += 1
-    categories.append(products)
+categories.append(products)
 
 products = []
 for item in pantaloni:
@@ -84,7 +84,7 @@ for item in pantaloni:
         'image': item
     })
     i += 1
-    categories.append(products)
+categories.append(products)
 
 products = []
 for item in scarpe_adidas:
@@ -93,7 +93,7 @@ for item in scarpe_adidas:
         'image': item
     })
     i += 1
-    categories.append(products)
+categories.append(products)
 
 
 products = []
@@ -103,7 +103,7 @@ for item in skateboard:
         'image': item
     })
     i += 1
-    categories.append(products)
+categories.append(products)
 
 
 products = []
@@ -113,7 +113,7 @@ for item in tshirt_heart:
         'image': item
     })
     i += 1
-    categories.append(products)
+categories.append(products)
 
 
 products = []
@@ -123,7 +123,7 @@ for item in zaini:
         'image': item
     })
     i += 1
-    categories.append(products)
+categories.append(products)
 
 
 
