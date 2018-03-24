@@ -131,7 +131,7 @@ def get_category():
     # return the first qt images
     qt = int(request.args.get('qt'))
     #get the category
-    category = products[:qt] 
+    category = categories[:qt] 
 
     # randomize the pants array
     # random.shuffle(category)
