@@ -168,6 +168,21 @@ def get_category():
     results = []
 
     for row in data:
+
+        cursor.execute("SELECT s.id_shop, s.address, s.lat, s.lon\
+                FROM shop as s INNER JOIN product_sohp as ps on s.id_shop = ps.id_shop\
+                WHERE " + row[0] + " = ps.id_product AND ps.price = " + row[4])
+
+        shop = cursor.fetch(one)
+
+        shop = {
+            'shop_id': shop[0],
+            'address': shop[1],
+            'lat': shop[2],
+            'lon': shop[3],
+
+        }
+
         results.append({
 
                 'product_id': row[0],
@@ -175,6 +190,7 @@ def get_category():
                 'image': row[2],
                 'category': row[3],
                 'price': row[4],
+                'shop': shop
 
 
         })
