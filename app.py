@@ -171,7 +171,7 @@ def get_category():
 
         cursor.execute("SELECT s.id_shop, s.address, s.lat, s.lon\
                 FROM shop as s INNER JOIN product_sohp as ps on s.id_shop = ps.id_shop\
-                WHERE " + row[0] + " = ps.id_product AND ps.price = " + str(row[4]))
+                WHERE " + str(row[0]) + " = ps.id_product AND ps.price = " + str(row[4]))
 
         shop = cursor.fetch(one)
 
