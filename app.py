@@ -15,6 +15,24 @@ random.seed(0)
 # initialization
 app = Flask(__name__, static_url_path='/static')
 
+import MySQLdb
+ 
+# Connessione al Database
+db = MySQLdb.connect("localhost", "root","abc123","hackhtml" )
+ 
+# Ottenimento del cursore
+cursor = db.cursor()
+ 
+# Esecuzione di una query SQL
+cursor.execute("SELECT VERSION()")
+ 
+# Lettura di una singola riga dei risultati della query
+data = cursor.fetchone()
+ 
+print "Database version : %s " % data
+ 
+# Disconnessione
+db.close()
 
 
 def get_links(path):
