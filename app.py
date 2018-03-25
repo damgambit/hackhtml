@@ -6,6 +6,8 @@ import numpy as np
 import glob
 import MySQLdb
 
+import sys
+sys.path.insert(0, '/home/damianogambitta/hackhtml')
 
 # default_graph = tf.get_default_graph()
 
