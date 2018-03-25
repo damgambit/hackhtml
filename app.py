@@ -207,7 +207,9 @@ def get_category():
 
 
             })
-        full.append(results)
+
+        if not result.empty():
+            full.append(results)
 
 
     # # return the first qt images
