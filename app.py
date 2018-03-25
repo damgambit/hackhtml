@@ -172,7 +172,7 @@ def get_category():
     # randomize the pants array
     # random.shuffle(category)
 
-    images = category
+    # images = category
 
 
     return jsonify({'products':  data})
