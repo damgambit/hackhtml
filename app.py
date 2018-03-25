@@ -164,6 +164,21 @@ def get_category():
     # Lettura di una singola riga dei risultati della query
     data = cursor.fetchall()
 
+    results = []
+
+    for row in data:
+        results.append({
+
+                'product_id': row[0],
+                'name': row[1],
+                'image': row[2],
+                'category': row[3],
+                'price': row[4],
+
+
+        })
+
+
     # # return the first qt images
     # qt = int(request.args.get('qt'))
     # #get the category
@@ -175,7 +190,7 @@ def get_category():
     # images = category
 
 
-    return jsonify({'products':  data})
+    return jsonify({'products':  results})
 
 
 @app.route('/api/v1/get_similar', methods=['GET'])
