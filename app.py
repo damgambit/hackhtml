@@ -155,8 +155,9 @@ def get_category():
     cursor = db.cursor()
      
     # Esecuzione di una query SQL
-    cursor.execute("SELECT  p.id_product as product_id, p.name, p.path_image as image,   \                                  c.description as category , MIN(price) as price\
-                  FROM product as p INNER JOIN category as c on p.id_category = c.id_category\
+    cursor.execute("SELECT  p.id_product as product_id, p.name, p.path_image as image, \
+            c.description as category , MIN(price) as price FROM product as p \
+            INNER JOIN category as c on p.id_category = c.id_category\
                   INNER JOIN product_sohp as ps on ps.id_product = p.id_product\
                   group by p.id_product,p.name,p.path_image,c.description\
                     ")
