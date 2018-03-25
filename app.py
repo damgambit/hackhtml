@@ -208,7 +208,7 @@ def get_category():
 
             })
 
-        if not result.empty():
+        if not results.empty():
             full.append(results)
 
 
