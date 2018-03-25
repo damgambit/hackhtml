@@ -155,45 +155,59 @@ def get_category():
     cursor = db.cursor()
      
     # Esecuzione di una query SQL
-    cursor.execute("SELECT  p.id_product as product_id, p.name, p.path_image as image, \
-            c.description as category , MIN(price) as price FROM product as p \
-            INNER JOIN category as c on p.id_category = c.id_category\
-                  INNER JOIN product_sohp as ps on ps.id_product = p.id_product\
-                  group by p.id_product,p.name,p.path_image,c.description\
-                    ")
+    cursor.execute("SELECT id_category from category")
      
     # Lettura di una singola riga dei risultati della query
-    data = cursor.fetchall()
+    categories = cursor.fetchall()
 
-    results = []
+    # Ottenimento del cursore
+    cursor = db.cursor()
+     
+    full = []
 
-    for row in data:
+    for category in categories:
+        # Esecuzione di una query SQL
+        cursor.execute("SELECT  p.id_product as product_id, p.name, p.path_image as image, \
+                c.description as category , MIN(price) as price FROM product as p \
+                INNER JOIN category as c on p.id_category = c.id_category\
+                      INNER JOIN product_sohp as ps on ps.id_product = p.id_product\
+                      WHERE c.id_category = " + str(category[0]) + "\
+                      group by p.id_product,p.name,p.path_image,c.description\
+            ")
+         
+        # Lettura di una singola riga dei risultati della query
+        data = cursor.fetchall()
 
-        cursor.execute("SELECT s.id_shop, s.address, s.lat, s.lon\
-                FROM shop as s INNER JOIN product_sohp as ps on s.id_shop = ps.id_shop\
-                WHERE " + str(row[0]) + " = ps.id_product AND ps.price = " + str(row[4]))
+        results = []
 
-        shop = cursor.fetchone()
+        for row in data:
 
-        shop = {
-            'shop_id': shop[0],
-            'address': shop[1],
-            'lat': shop[2],
-            'lon': shop[3],
+            cursor.execute("SELECT s.id_shop, s.address, s.lat, s.lon\
+                    FROM shop as s INNER JOIN product_sohp as ps on s.id_shop = ps.id_shop\
+                    WHERE " + str(row[0]) + " = ps.id_product AND ps.price = " + str(row[4]))
 
-        }
+            shop = cursor.fetchone()
 
-        results.append({
+            shop = {
+                'shop_id': shop[0],
+                'address': shop[1],
+                'lat': shop[2],
+                'lon': shop[3],
 
-                'product_id': row[0],
-                'name': row[1],
-                'image': row[2],
-                'category': row[3],
-                'price': row[4],
-                'shop': shop
+            }
+
+            results.append({
+
+                    'product_id': row[0],
+                    'name': row[1],
+                    'image': row[2],
+                    'category': row[3],
+                    'price': row[4],
+                    'shop': shop
 
 
-        })
+            })
+        full.append(results)
 
 
     # # return the first qt images
@@ -207,7 +221,7 @@ def get_category():
     # images = category
 
 
-    return jsonify({'products':  results})
+    return jsonify({'products':  full})
 
 
 @app.route('/api/v1/get_similar', methods=['GET'])
