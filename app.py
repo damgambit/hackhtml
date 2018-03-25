@@ -167,12 +167,12 @@ def get_category():
 
     for category in categories:
         # Esecuzione di una query SQL
-        cursor.execute("SELECT   p.id_product as product_id, p.name, p.path_image as image, \
-            c.description as category , ps.price , ps.id_product_sohp FROM product as p \
-            INNER JOIN category as c on p.id_category = c.id_category\
-            INNER JOIN product_sohp as ps on ps.id_product_sohp = (SELECT ps1.id_product_sohp \
-                from product_sohp as ps1 where ps.id_product = ps1.id_product limit 1)\
+        cursor.execute("SELECT  p.id_product as product_id, p.name, p.path_image as image, \
+                c.description as category , MIN(price) as price FROM product as p \
+                INNER JOIN category as c on p.id_category = c.id_category\
+                      INNER JOIN product_sohp as ps on ps.id_product = p.id_product\
                       WHERE c.id_category = " + str(category[0]) + "\
+                      group by p.id_product,p.name,p.path_image,c.description\
             ")
          
         # Lettura di una singola riga dei risultati della query
@@ -184,7 +184,7 @@ def get_category():
 
             cursor.execute("SELECT s.id_shop, s.address, s.lat, s.lon\
                     FROM shop as s INNER JOIN product_sohp as ps on s.id_shop = ps.id_shop\
-                    WHERE " + str(row[5]) + " = ps.id_product_sohp")
+                    WHERE " + str(row[0]) + " = ps.id_product AND ps.price = " + str(row[4]))
 
             shop = cursor.fetchone()
 
