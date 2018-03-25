@@ -182,7 +182,7 @@ def get_category():
 
         for row in data:
 
-            cursor.execute("SELECT s.id_shop, s.address, s.lat, s.lon\
+            cursor.execute("SELECT s.id_shop, s.address, s.lat, s.lon, s.name\
                     FROM shop as s INNER JOIN product_sohp as ps on s.id_shop = ps.id_shop\
                     WHERE " + str(row[0]) + " = ps.id_product AND ps.price = " + str(row[4]))
 
@@ -193,6 +193,7 @@ def get_category():
                 'address': shop[1],
                 'lat': shop[2],
                 'lon': shop[3],
+                'name': shop[4]
 
             }
 
