@@ -162,7 +162,7 @@ def get_category():
                     ")
      
     # Lettura di una singola riga dei risultati della query
-    data = cursor.fetchone()
+    data = cursor.fetchall()
 
     # # return the first qt images
     # qt = int(request.args.get('qt'))
