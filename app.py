@@ -184,7 +184,7 @@ def get_category():
 
             cursor.execute("SELECT s.id_shop, s.address, s.lat, s.lon\
                     FROM shop as s INNER JOIN product_sohp as ps on s.id_shop = ps.id_shop\
-                    WHERE " + str(row[5]) + " = ps.id_product_sohp "
+                    WHERE " + str(row[5]) + " = ps.id_product_sohp")
 
             shop = cursor.fetchone()
 
