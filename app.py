@@ -155,10 +155,10 @@ def get_category():
     cursor = db.cursor()
      
     # Esecuzione di una query SQL
-    cursor.execute("SELECT DISTINCT p.id_product as product_id, p.name, p.path_image as image,\
-                    c.description as category, ps.price\
-                    FROM product as p INNER JOIN category as c on p.id_category = c.id_category\
-                    INNER JOIN product_sohp as ps on ps.id_product = p.id_product\
+    cursor.execute("SELECT  p.id_product as product_id, p.name, p.path_image as image,   \                                  c.description as category , MIN(price) as price\
+                  FROM product as p INNER JOIN category as c on p.id_category = c.id_category\
+                  INNER JOIN product_sohp as ps on ps.id_product = p.id_product\
+                  group by p.id_product,p.name,p.path_image,c.description\
                     ")
      
     # Lettura di una singola riga dei risultati della query
@@ -173,7 +173,7 @@ def get_category():
                 'name': row[1],
                 'image': row[2],
                 'category': row[3],
-                'price': row[4],
+                'price': double(row[4]),
 
 
         })
