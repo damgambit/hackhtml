@@ -174,7 +174,7 @@ def get_category():
                 'name': row[1],
                 'image': row[2],
                 'category': row[3],
-                'price': double(row[4]),
+                'price': row[4],
 
 
         })
