@@ -164,21 +164,18 @@ def get_category():
     # Lettura di una singola riga dei risultati della query
     data = cursor.fetchone()
 
-    # return the first qt images
-    qt = int(request.args.get('qt'))
-    #get the category
-    category = categories[:qt] 
+    # # return the first qt images
+    # qt = int(request.args.get('qt'))
+    # #get the category
+    # category = categories[:qt] 
 
     # randomize the pants array
     # random.shuffle(category)
 
-
-    
-
     images = category
 
 
-    return jsonify({'products':  images})
+    return jsonify({'products':  data})
 
 
 @app.route('/api/v1/get_similar', methods=['GET'])
