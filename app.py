@@ -29,10 +29,7 @@ cursor.execute("SELECT VERSION()")
 # Lettura di una singola riga dei risultati della query
 data = cursor.fetchone()
  
-print "Database version : %s " % data
- 
-# Disconnessione
-db.close()
+
 
 
 def get_links(path):
@@ -153,6 +150,19 @@ def get_category():
 
     #randomize the categories
     # random.shuffle(products)
+
+    # Ottenimento del cursore
+    cursor = db.cursor()
+     
+    # Esecuzione di una query SQL
+    cursor.execute("SELECT DISTINCT p.id_product as product_id, p.name, p.path_image as image,\
+                    c.description as category, ps.price\
+                    FROM product as p INNER JOIN category as c on p.id_category = c.id_category\
+                    INNER JOIN product_sohp as ps on ps.id_product = p.id_product\
+                    ")
+     
+    # Lettura di una singola riga dei risultati della query
+    data = cursor.fetchone()
 
     # return the first qt images
     qt = int(request.args.get('qt'))
