@@ -208,7 +208,7 @@ def get_category():
 
             })
 
-        if not results:
+        if results:
             full.append(results)
 
 
